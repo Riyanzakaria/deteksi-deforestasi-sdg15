@@ -1,0 +1,60 @@
+{
+  "waktu_jalan": "2026-11-12T15:02:58",
+  "root_proyek": "/home/hatch/workspace/learning-problem-deforestasi",
+  "seed": 42,
+  "ekstraksi": "dilewati (folder train-jpg sudah ada)",
+  "baris_csv_awal": 40479,
+  "baris_csv_diharapkan": 40479,
+  "jumlah_baris_sesuai_harapan": true,
+  "duplikat_image_name": {
+    "jumlah_baris_dibuang": 0,
+    "nama": []
+  },
+  "file_tidak_ada_di_disk": {
+    "jumlah": 0,
+    "nama": []
+  },
+  "file_tidak_ada_di_csv": {
+    "jumlah": 0,
+    "nama": []
+  },
+  "citra_rusak": {
+    "jumlah": 0,
+    "nama": [],
+    "detail_error": {}
+  },
+  "baris_dibuang_rusak_atau_hilang": {
+    "jumlah": 0,
+    "nama": []
+  },
+  "cloudy_label_lain_dihapus": {
+    "jumlah": 0,
+    "nama": []
+  },
+  "dibuang_label_cuaca_ganda": {
+    "jumlah": 0,
+    "nama": []
+  },
+  "dibuang_tanpa_label_cuaca": {
+    "jumlah": 1,
+    "nama": [
+      "train_24448"
+    ]
+  },
+  "total_bersih": 40478,
+  "label_di_luar_daftar_baku": [],
+  "metode_split": "fallback lokal: iterative stratification dua tahap plus penyeimbangan tukar (swap) penekan deviasi proporsi label (skmultilearn tidak tersedia)",
+  "split": {
+    "rasio": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "ukuran": {
+      "train": 28335,
+      "val": 6071,
+      "test": 6072
+    },
+    "deviasi_proporsi_label_maksimum": 0.001367
+  }
+}
