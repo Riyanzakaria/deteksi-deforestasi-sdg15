@@ -14,12 +14,22 @@ Repository proyek Learning Problem mata kuliah Praktisi Data Science. Proyek ini
 | Target | F2 minimal 0,87 pada data uji |
 
 <a id="isi"></a>
-**Isi:** [Tentang Proyek](#tentang-proyek) · [Keterkaitan dengan SDG](#keterkaitan-dengan-sdg) · [Dataset](#dataset) · [Rancangan Tiga Model](#rancangan-tiga-model) · [Kemajuan](#kemajuan) · [Struktur Repository](#struktur-repository) · [Menjalankan Ulang Persiapan Data](#menjalankan-ulang-persiapan-data) · [Referensi](#referensi)
+**Isi:** [Tentang Proyek](#tentang-proyek) · [Keterkaitan dengan SDG](#keterkaitan-dengan-sdg) · [Dataset](#dataset) · [Rancangan Tiga Model](#rancangan-tiga-model) · [Risiko dan Pertimbangan Etika](#risiko-dan-pertimbangan-etika) · [Kemajuan](#kemajuan) · [Struktur Repository](#struktur-repository) · [Menjalankan Ulang Persiapan Data](#menjalankan-ulang-persiapan-data) · [Referensi](#referensi)
 
 <a id="tentang-proyek"></a>
 ## Tentang Proyek
 
-Hutan tropis terus menyusut, sedangkan pemantauannya masih banyak dikerjakan secara manual. Citra satelit tersedia dalam jumlah besar, tetapi memberi label tutupan lahan dan aktivitas manusia di dalamnya satu per satu memakan waktu lama. Proyek ini mencoba cara otomatis untuk membaca citra tersebut: satu citra diberi 17 label sekaligus karena satu wilayah bisa memuat banyak hal dalam waktu yang sama, misalnya hutan primer yang berawan sebagian dan dilalui jalan. Hasil akhirnya adalah perbandingan tiga model dengan tingkat kerumitan berbeda pada data uji yang sama, supaya terlihat seberapa besar tambahan manfaat model yang lebih rumit untuk persoalan ini.
+Hutan tropis terus menyusut, sedangkan pemantauannya masih banyak dikerjakan secara manual. Citra satelit tersedia dalam jumlah besar, tetapi memberi label tutupan lahan dan aktivitas manusia di dalamnya, seperti tebang bakar, penebangan selektif, dan pertambangan, lama bila dikerjakan orang satu per satu. Hansen dkk. (2013) mencatat 2,3 juta km² hutan hilang di seluruh dunia pada 2000 sampai 2012; pada periode yang sama deforestasi di Brasil menurun, tetapi kehilangan hutan di Indonesia dan beberapa negara tropis lain justru naik, sehingga cara otomatis membaca citra satelit layak dicoba untuk konteks Indonesia.
+
+Proyek ini mencoba cara otomatis tersebut: satu citra diberi 17 label sekaligus karena satu wilayah bisa memuat banyak hal dalam waktu yang sama, misalnya hutan primer yang berawan sebagian dan dilalui jalan. Keberhasilan model diukur dengan F2-score yang memakai beta = 2, sehingga recall berbobot empat kali lipat dibanding precision; perhatian utama diberikan pada recall label penyebab deforestasi karena label-label itu tidak boleh terlewat. Hasil akhirnya adalah perbandingan tiga model dengan tingkat kerumitan berbeda pada data uji yang sama, supaya terlihat seberapa besar tambahan manfaat model yang lebih rumit untuk persoalan ini.
+
+Isi bagian ini dan bagian lain README ini diselaraskan dengan formulir pengajuan ide (Lampiran B) yang terkumpul pada 6 November 2026. Kriteria pengajuan yang terpenuhi:
+
+- Ide berasal dari mahasiswa dan tidak duplikat
+- Selaras jelas dengan satu SDG dan targetnya
+- Dapat dirumuskan sebagai masalah ML dengan target yang jelas
+- Dataset tersedia, legal dan etis digunakan, dan cukup besar
+- Layak untuk tiga model termasuk deep learning dalam 6 minggu
 
 <a id="keterkaitan-dengan-sdg"></a>
 ## Keterkaitan dengan SDG
@@ -40,7 +50,9 @@ Hutan tropis terus menyusut, sedangkan pemantauannya masih banyak dikerjakan sec
 | Sumber | Kompetisi Kaggle tahun 2017 |
 | Tautan | https://www.kaggle.com/c/planet-understanding-the-amazon-from-space |
 | Citra latih berlabel | 40.479 citra |
-| Ukuran citra | 256 x 256 piksel, format JPG |
+| Citra uji tanpa label | Sekitar 40.668 citra (tidak dipakai pada proyek ini) |
+| Ukuran citra | 256 x 256 piksel, format JPG 3 kanal (tersedia juga format TIF 4 kanal) |
+| Akses | Bergabung ke kompetisi di Kaggle (gratis) |
 | Berkas yang dipakai | train-jpg.tar.7z (629.296.207 byte) dan train_v2.csv (40.479 baris label) |
 | Rata-rata label | 2,87 label per citra (paling sedikit 1, paling banyak 9) |
 
@@ -75,6 +87,16 @@ Protokol evaluasi yang sudah dikunci:
 | Metrik tambahan | F2 dan recall tiap label, dengan sorotan pada label penyebab deforestasi (slash_burn, selective_logging, artisinal_mine, conventional_mine) |
 | Data penyetelan | Data validasi, tidak pernah memakai data uji |
 | Target keberhasilan | F2 minimal 0,87 pada data uji |
+
+<a id="risiko-dan-pertimbangan-etika"></a>
+## Risiko dan Pertimbangan Etika
+
+| Risiko | Catatan dan penanganan |
+| --- | --- |
+| Label sangat timpang | Label primary muncul pada lebih dari 90 persen citra, sedangkan beberapa label langka kurang dari 1 persen. Ditangani dengan metrik F2, pembobotan loss, dan penyetelan threshold per label |
+| Bias geografis data | Data latih hanya dari hutan Amazon di Brasil, sehingga model belum tentu bekerja sebaik itu pada hutan Indonesia, misalnya Kalimantan dan Papua. Keterbatasan ini ditulis apa adanya sebagai batas penelitian, bukan disembunyikan |
+| Privasi | Citra satelit beresolusi 3,7 m tidak memuat data pribadi, jadi risiko privasi kecil |
+| Kebisingan label | Label dibuat manusia melalui CrowdFlower, jadi masih mungkin ada label yang keliru |
 
 <a id="kemajuan"></a>
 ## Kemajuan
@@ -137,5 +159,5 @@ Keluaran skrip: data bersih dan berkas pembagian di `data/processed/`, beserta `
 <a id="referensi"></a>
 ## Referensi
 
-1. Ji, J., Jing, W., Chen, G., Lin, J., & Song, H. (2020). Multi-label remote sensing image classification with latent semantic dependencies. *Remote Sensing*, *12*(7), 1110. https://doi.org/10.3390/rs12071110
-2. Hansen, M. C., Potapov, P. V., Moore, R., Hancher, M., Turubanova, S. A., Tyukavina, A., Thau, D., Stehman, S. V., Goetz, S. J., Loveland, T. R., Kommareddy, A., Egorov, A., Chini, L., Justice, C. O., & Townshend, J. R. G. (2013). High-resolution global maps of 21st-century forest cover change. *Science*, *342*(6160), 850–853. https://doi.org/10.1126/science.1244693
+1. Ji, J., Jing, W., Chen, G., Lin, J., & Song, H. (2020). Multi-label remote sensing image classification with latent semantic dependencies. *Remote Sensing*, *12*(7), 1110. https://doi.org/10.3390/rs12071110 — memakai dataset yang sama (Planet) dengan DenseNet121-BC, attention, dan LSTM, serta loss berbobot untuk label langka.
+2. Hansen, M. C., Potapov, P. V., Moore, R., Hancher, M., Turubanova, S. A., Tyukavina, A., Thau, D., Stehman, S. V., Goetz, S. J., Loveland, T. R., Kommareddy, A., Egorov, A., Chini, L., Justice, C. O., & Townshend, J. R. G. (2013). High-resolution global maps of 21st-century forest cover change. *Science*, *342*(6160), 850–853. https://doi.org/10.1126/science.1244693 — menunjukkan skala kehilangan hutan global dari citra satelit.
