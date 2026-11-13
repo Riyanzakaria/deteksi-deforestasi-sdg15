@@ -14,7 +14,7 @@ Repository proyek Learning Problem mata kuliah Praktisi Data Science. Proyek ini
 | Target | F2 minimal 0,87 pada data uji |
 
 <a id="isi"></a>
-**Isi:** [Tentang Proyek](#tentang-proyek) · [Keterkaitan dengan SDG](#keterkaitan-dengan-sdg) · [Dataset](#dataset) · [Rancangan Tiga Model](#rancangan-tiga-model) · [Risiko dan Pertimbangan Etika](#risiko-dan-pertimbangan-etika) · [Kemajuan](#kemajuan) · [Struktur Repository](#struktur-repository) · [Menjalankan Ulang Persiapan Data](#menjalankan-ulang-persiapan-data) · [Referensi](#referensi)
+**Isi:** [Tentang Proyek](#tentang-proyek) · [Learning Problem](#learning-problem) · [Keterkaitan dengan SDG](#keterkaitan-dengan-sdg) · [Dataset](#dataset) · [Rancangan Tiga Model](#rancangan-tiga-model) · [Risiko dan Pertimbangan Etika](#risiko-dan-pertimbangan-etika) · [Kemajuan](#kemajuan) · [Struktur Repository](#struktur-repository) · [Menjalankan Ulang Persiapan Data](#menjalankan-ulang-persiapan-data) · [Referensi](#referensi)
 
 <a id="tentang-proyek"></a>
 ## Tentang Proyek
@@ -30,6 +30,17 @@ Isi bagian ini dan bagian lain README ini diselaraskan dengan formulir pengajuan
 - Dapat dirumuskan sebagai masalah ML dengan target yang jelas
 - Dataset tersedia, legal dan etis digunakan, dan cukup besar
 - Layak untuk tiga model termasuk deep learning dalam 6 minggu
+
+<a id="learning-problem"></a>
+## Learning Problem
+
+Rumusan persoalan pembelajaran mesin proyek ini diringkas dalam tabel berikut.
+
+| Komponen | Isian |
+| --- | --- |
+| Target | 17 label multi-label pada tiap citra: 4 label kondisi atmosfer, 6 label tutupan lahan umum, dan 7 label langka terkait aktivitas penyebab deforestasi; keluaran model berupa vektor biner 17 dimensi |
+| Objective | F2-score (beta = 2) setinggi mungkin pada data uji, dengan penekanan pada recall label penyebab deforestasi; target nilai minimal 0,87 dan recall label langka di atas hasil baseline |
+| Data | Citra satelit Planet: Understanding the Amazon from Space (Kaggle, 2017): 40.479 citra latih berukuran 256 x 256 piksel dengan 17 label; jenis data citra; akses legal dengan bergabung ke kompetisi secara gratis |
 
 <a id="keterkaitan-dengan-sdg"></a>
 ## Keterkaitan dengan SDG
