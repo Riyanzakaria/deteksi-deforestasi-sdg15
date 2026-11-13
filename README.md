@@ -23,7 +23,7 @@ Hutan tropis terus menyusut, sedangkan pemantauannya masih banyak dikerjakan sec
 
 Proyek ini mencoba cara otomatis tersebut: satu citra diberi 17 label sekaligus karena satu wilayah bisa memuat banyak hal dalam waktu yang sama, misalnya hutan primer yang berawan sebagian dan dilalui jalan. Keberhasilan model diukur dengan F2-score yang memakai beta = 2, sehingga recall berbobot empat kali lipat dibanding precision; perhatian utama diberikan pada recall label penyebab deforestasi karena label-label itu tidak boleh terlewat. Hasil akhirnya adalah perbandingan tiga model dengan tingkat kerumitan berbeda pada data uji yang sama, supaya terlihat seberapa besar tambahan manfaat model yang lebih rumit untuk persoalan ini.
 
-Isi bagian ini dan bagian lain README ini diselaraskan dengan formulir pengajuan ide (Lampiran B) yang terkumpul pada 6 November 2026. Kriteria pengajuan yang terpenuhi:
+Kriteria pengajuan ide yang terpenuhi:
 
 - Ide berasal dari mahasiswa dan tidak duplikat
 - Selaras jelas dengan satu SDG dan targetnya
