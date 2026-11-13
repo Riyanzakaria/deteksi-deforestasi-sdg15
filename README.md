@@ -41,6 +41,8 @@ Isi bagian ini dan bagian lain README ini diselaraskan dengan formulir pengajuan
 | Bunyi target | Pengelolaan hutan secara lestari, penghentian deforestasi, dan pemulihan hutan yang terdegradasi |
 | Relevansi proyek | Model yang mampu menandai citra berisi aktivitas perusak hutan membantu pemantauan kawasan hutan dalam skala besar, yang merupakan langkah awal pengelolaan dan perlindungan hutan pada target tersebut |
 
+Pemantauan adalah pintu masuknya: sebelum hutan bisa dikelola dan dilindungi, perubahan di dalamnya harus terlihat lebih dulu. Di situlah proyek ini berkontribusi pada target 15.2, yaitu menyediakan cara membaca citra satelit kawasan hutan secara otomatis dan dalam jumlah besar, sehingga tanda-tanda deforestasi bisa ditemukan lebih awal.
+
 <a id="dataset"></a>
 ## Dataset
 
@@ -70,6 +72,8 @@ Ke-17 label terbagi menjadi tiga kelompok:
 | Label terjarang | blow_down, 98 citra (0,24 persen) |
 | Ketimpangan | Sekitar 383 banding 1 antara label terbanyak dan terjarang |
 
+Dataset ini kami pakai karena labelnya memang dirancang untuk membaca isi hutan dari citra satelit, dan persoalannya nyata: satu citra bisa berisi hutan primer, sungai, dan lahan garapan sekaligus, jadi tugasnya multi-label dan bukan klasifikasi satu label biasa. Tantangan utamanya juga terlihat sejak awal dari angka di atas, yaitu ketimpangan label yang ekstrem, dan tantangan itulah yang menentukan pilihan metrik serta rancangan model kami.
+
 <a id="rancangan-tiga-model"></a>
 ## Rancangan Tiga Model
 
@@ -88,8 +92,12 @@ Protokol evaluasi yang sudah dikunci:
 | Data penyetelan | Data validasi, tidak pernah memakai data uji |
 | Target keberhasilan | F2 minimal 0,87 pada data uji |
 
+Ketiga model sengaja dibandingkan secara berjenjang. Baseline yang sederhana menjadi patokan awal, model advanced menunjukkan seberapa jauh fitur buatan tangan bisa didorong, dan deep learning membaca citranya langsung tanpa fitur buatan. Semuanya diuji pada data uji yang sama dengan protokol yang sama, jadi selisih hasilnya berasal dari modelnya, bukan dari cara mengujinya.
+
 <a id="risiko-dan-pertimbangan-etika"></a>
 ## Risiko dan Pertimbangan Etika
+
+Empat hal berikut kami sadari sejak pengajuan ide dan kami tulis terbuka, karena keempatnya memengaruhi cara hasil proyek ini harus dibaca.
 
 | Risiko | Catatan dan penanganan |
 | --- | --- |
@@ -122,6 +130,8 @@ Hasil persiapan data dalam angka:
 | Data latih | 28.335 citra |
 | Data validasi | 6.071 citra |
 | Data uji | 6.072 citra |
+
+Posisi proyek saat ini: seluruh pekerjaan persiapan sudah tuntas dan hasilnya bisa diperiksa ulang di repository ini, dari data mentah sampai berkas pembagiannya. Yang tersisa adalah pekerjaan pemodelan dan pelaporan akhir, yang urutannya sudah kami tetapkan: melatih baseline lebih dulu sebagai patokan, lalu model advanced dan deep learning, membandingkan ketiganya, dan menutupnya dengan laporan akhir serta presentasi.
 
 Rincian lengkap persiapan data tersedia pada laporan perkembangan di [results/LAPORAN-PERKEMBANGAN.md](results/LAPORAN-PERKEMBANGAN.md).
 
@@ -158,6 +168,8 @@ Keluaran skrip: data bersih dan berkas pembagian di `data/processed/`, beserta `
 
 <a id="referensi"></a>
 ## Referensi
+
+Dua referensi berikut menjadi pijakan ilmiah proyek ini sejak pengajuan ide.
 
 1. Ji, J., Jing, W., Chen, G., Lin, J., & Song, H. (2020). Multi-label remote sensing image classification with latent semantic dependencies. *Remote Sensing*, *12*(7), 1110. https://doi.org/10.3390/rs12071110 — memakai dataset yang sama (Planet) dengan DenseNet121-BC, attention, dan LSTM, serta loss berbobot untuk label langka.
 2. Hansen, M. C., Potapov, P. V., Moore, R., Hancher, M., Turubanova, S. A., Tyukavina, A., Thau, D., Stehman, S. V., Goetz, S. J., Loveland, T. R., Kommareddy, A., Egorov, A., Chini, L., Justice, C. O., & Townshend, J. R. G. (2013). High-resolution global maps of 21st-century forest cover change. *Science*, *342*(6160), 850–853. https://doi.org/10.1126/science.1244693 — menunjukkan skala kehilangan hutan global dari citra satelit.
