@@ -5,7 +5,7 @@ Repository proyek Learning Problem mata kuliah Praktisi Data Science. Proyek ini
 | Keterangan | Isi |
 | --- | --- |
 | Kelompok | Kelompok 10 |
-| Anggota | Riyan Zakaria Zulkarnain (244311058) dan Andrian Maulana (244311036) |
+| Anggota | Riyan Zakaria Zulkarnain (244311058) dan Andrian Maulana (244311036)  |
 | Kelas | 5B |
 | Program studi | Teknologi Rekayasa Perangkat Lunak |
 | Kampus | Politeknik Negeri Madiun |
